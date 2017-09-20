@@ -49,9 +49,16 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_bin);
         banner = (Banner) findViewById(R.id.banner);
-        initView();
-        okHttpClient = App.okHttpClient();
+        //banner轮播
+        //// // TODO: 2017/9/20 setBannerStyle()方法  设置轮播的样式：是否有小圆点，标题，以及小圆点的样式、位置
+        initBannerLunBo();
+        //okhttp加载数据
+        loadBean();
 
+    }
+
+    private void loadBean() {
+        okHttpClient = App.okHttpClient();
 
         Request request = new Request.Builder()
                 .url("http://news-at.zhihu.com/api/4/news/latest")
@@ -81,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
                             myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, String position) {
-                                    Toast.makeText(MainActivity.this,""+position.toString().trim(),Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "" + position.toString().trim(), Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -92,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         });
     }
 
-    private void initView() {
+
+    private void initBannerLunBo() {
         banner = (Banner) findViewById(R.id.banner);
         //放图片地址的集合
         list_path = new ArrayList<>();
@@ -130,11 +138,13 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
 
 
     }
+
     //轮播图的监听方法
     @Override
     public void OnBannerClick(int position) {
-        Log.i("tag", "你点了第"+position+"张轮播图");
+        Log.i("tag", "你点了第" + position + "张轮播图");
     }
+
     //自定义的图片加载器
     private class MyLoader extends ImageLoader {
         @Override
