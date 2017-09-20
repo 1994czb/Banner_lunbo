@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnBannerListener 
         //banner轮播
         //// // TODO: 2017/9/20 setBannerStyle()方法  设置轮播的样式：是否有小圆点，标题，以及小圆点的样式、位置
         initBannerLunBo();
-        //okhttp加载数据
+        //okhttp加载数据，并设置条目点击事件，点击吐司对应的title
         loadBean();
 
     }
